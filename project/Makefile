@@ -10,7 +10,7 @@ AS              = msp430-elf-gcc -mmcu=${CPU} -c
 
 all: runToy.elf
 
-runToy.elf: ${COMMON_OBJECTS} toymain.o
+runToy.elf: ${COMMON_OBJECTS} toymain.o buzzer.o led.o stateMachines.o switches.o p2_interrupt_handler.o 
 	$(CC) $(CFLAGS) ${LDFLAGS} -o $@ $^ -lTimer -lp2sw -lLcd
 
 load: runToy.elf
@@ -18,3 +18,9 @@ load: runToy.elf
 
 clean:
 	rm -f *.o *.elf *~
+
+buzzer.o: buzzer.h
+
+stateMachines.o: buzzer.h stateMachines.h led.h
+
+led.o: led.h led.c

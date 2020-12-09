@@ -6,18 +6,36 @@
 #include <shape.h>
 #include <abCircle.h>
 #include "buzzer.h"
+#include "switches.h"
+#include "led.h"
+#include "stateMachines.h"
 
-#define GREEN_LED BIT6
+
+int redrawScreen = 1; /* Checks whether screen needs to be redrawn */
+
+/* Draw a square */
+void drawFigure(u_char col, u_char row, u_int color)
+{
+  int i, j;
+  for (i = 1; i <= col; i++)
+      for (j = 1; j <= row; j++)
+	drawPixel(6, 15, COLOR_RED);
+}
 
 int main()
-{
-  P1DIR |= GREEN_LED; /* green led on when CPU on */
-  P1OUT |= GREEN_LED;
-  
+{ 
   configureClocks();
   lcd_init();
 
-  //for(int rc = 1; rc <= 10; rc++)
-    drawPixel(5, 10, COLOR_WHITE);
+  enableWDTInterrupts();      /* enable periodic interrupt */
+  
 
+  or_sr(0x08);              /* GIE (enable interrupts) */
+  //clearScreen(COLOR_WHITE);
+}
+
+void wdt_c_handler()
+{
+  static short count = 0;
+  count++;
 }
