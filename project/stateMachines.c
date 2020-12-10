@@ -2,7 +2,9 @@
 #include "stateMachines.h"
 #include "led.h"
 #include "buzzer.h"
-#include "switches.h"
+#include "p2switches.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
 
 void redOn()//turn red led on with sound
 {
@@ -40,20 +42,14 @@ void doNothing()//turn everything off
   led_update();
 }
 
-void state_advance()
+void drawFigure(u_int color)
 {
-  switch(b){
-  case 1:
-    redOn();
-    break;
-  case 2:
-    greenOn();
-    break;
-  case 3:
-    onlySound();
-    break;
-  case 4:
-    doNothing();
-    break;
-  }
+  for(u_char c = 0; c < 30; c++)
+    {
+      for(u_char r = 0; r < 30; r++)
+	{
+	  drawPixel(r + 30, c + 30, color);
+	  drawPixel(r - 30, c - 30, color);
+	}
+    } 
 }
