@@ -6,5 +6,6 @@ void greenOn();
 void onlySound();
 void doNothing();
 void drawFigure();
+void dim50();
 
 #endif // included

@@ -5,7 +5,23 @@
 #include "p2switches.h"
 #include "lcdutils.h"
 #include "lcddraw.h"
+/*
+static char dimState = 0;
 
+void dim50() {
+  switch(dimState) {
+  case 0:
+    red_on = 1;
+    dimState = 1;
+    break;
+  case 1:
+    red_on = 0;
+    dimState = 0;
+    break;
+  }
+  led_update();
+}
+*/
 void redOn()//turn red led on with sound
 {
   buzzer_set_period(1500);

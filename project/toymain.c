@@ -72,7 +72,8 @@ void main()
 	    {
 	    case 1: /*S1 is pressed and red led is on and screen is color white*/
 	      clearScreen(COLOR_WHITE);
-	      redOn();
+	      //redOn();
+	      dim50();
 	      break;
 	    case 2: /*S2 is pressed and screen is black, green led on and draws a blue square*/
 	      clearScreen(COLOR_BLACK);
